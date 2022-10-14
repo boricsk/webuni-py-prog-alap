@@ -20,4 +20,5 @@ class MatekTeszt(unittest.TestCase):
         eredmeny = matek.kerekitett_osszeadas(0.22222222, 0.11111111)
         self.assertEqual(0.33333333, eredmeny)
 
-if __name__ == '__main__';unittest.main()
+if __name__ == '__main__':
+    unittest.main()
