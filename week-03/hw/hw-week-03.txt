@@ -1,0 +1,2 @@
+1. A kvíz ciklusos verziójának átírása úgy, hogy legyen benne fgv.
+2. LKKT megvalósítása fgv-vel.

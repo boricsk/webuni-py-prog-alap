@@ -1,0 +1,1 @@
+print('Az eltérés :' + str(int(input('Mikor "festette" Pollock a No. 5 című képét? '))-1948))

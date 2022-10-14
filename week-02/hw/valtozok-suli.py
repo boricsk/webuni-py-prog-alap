@@ -1,0 +1,1 @@
+print('A sulinak ' + str(int(input('Mikor kezdődött az Általános Iskolai tanulmányod ?')) + 8) + ' -ban / ben lett vége.')
