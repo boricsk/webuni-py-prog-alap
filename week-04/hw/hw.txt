@@ -1,0 +1,3 @@
+1. Kviz átalakítás 3-as tupple-re. Legyen szám alapú kérdés több. Eltérés százalék kiirása ha hibás a válasz. Az ellenőrzés legyen és arányos pontozási rendszert kell kidolgozni.
+2. Pitagoraszi szamharmasok tobábbfeljesztése, keressünk olyan számhármasokat, amelyek nem a 3,4,5 nek a többszöröse.
+
