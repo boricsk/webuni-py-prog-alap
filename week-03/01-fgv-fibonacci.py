@@ -1,6 +1,3 @@
-from re import A
-
-
 def fibonacci(n):
     a = 0
     b = 1
