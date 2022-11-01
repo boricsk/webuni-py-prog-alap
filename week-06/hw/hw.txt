@@ -1,3 +1,7 @@
 01 - Értékadás
 1. A Kvizben a fgv-nek 3 visszatérési értéke legyen (helyes volt e, szöveg, pont)
 2. Kerekitett összeadásnál két eredménnyel térjen vissza : eredmény és történt-e módosulás a kerekités során
+
+02 - Számok
+1. A kvízben lebegőpontos szám is legyen benne.
+2. Valamelyik társasjáték valószínűségét számold ki.
