@@ -5,3 +5,7 @@
 02 - Számok
 1. A kvízben lebegőpontos szám is legyen benne.
 2. Valamelyik társasjáték valószínűségét számold ki.
+
+03 - Stringek
+1. A kvizben a szöveges válaszok legyenek megengedőbbek
+2. Tarkabarka nyelvtörőben hány "arka" van.

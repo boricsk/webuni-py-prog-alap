@@ -97,10 +97,10 @@ def tippelos_kviz():
         random.shuffle(kivalasztott_tavak)
         
         kivalasztott_tavak_szotar = {chr(ord('A')+i): kivalasztott_tavak[i] for i in range(tipp_valaszlehetoseg)}
-        print('Mekkora a '+ tavak + ' tó területe?')
+        print(f'Mekkora a {tavak} tó területe?')
         
         for betu, terulet in kivalasztott_tavak_szotar.items():
-            print('    '+betu+'. '+str(terulet))
+            print(f'    {betu}.  +{str(terulet)}')
         valasz = input('> ')
         valasz_terulet = str(kivalasztott_tavak_szotar[valasz.upper()])
         if valasz_terulet == str(helyes_valasz):
@@ -108,10 +108,10 @@ def tippelos_kviz():
             tipp_pont += 10
             jo_valaszok += 1
         else:
-            print('A válasz helytelen. A jó válasz a(az) '+str(helyes_valasz)+'.')
+            print(f'A válasz helytelen. A jó válasz a(az) {str(helyes_valasz)}.')
     
-    print('Eredmény :'+str(100*jo_valaszok/tipp_kerdesek_szama)+' %.')
-    print('A pontszámod :', tipp_pont)
+    print(f'Eredmény : {str(100*jo_valaszok/tipp_kerdesek_szama)} %.')
+    print(f'A pontszámod : {tipp_pont}')
     
     if tipp_pont > int(TopScoreFelsorol[2]):
         print('Gratulálunk! Rekordot döntöttél!')
@@ -124,7 +124,7 @@ def felsorol_kviz():
         for fels_kerdes, fels_valasz in felsorol_kerdesek_valaszok:
             fels_beirt_valasz.clear()
             jo_valaszok = set(fels_valasz)
-            print('A kérdés : ',fels_kerdes)
+            print(f'A kérdés : {fels_kerdes}')
             start = datetime.now()
             while True:
                 user_valasz = input('Kérem a válaszokat kisbetűvel (vagy vége) ')
@@ -144,11 +144,11 @@ def felsorol_kviz():
                 ido = datetime.now()-start
             print('')
             print('Találatok : ' + ' ,'.join(talalatok))
-            print('Találati arány : ', str(100 * len(talalatok) // len(jo_valaszok)) + '% ')
+            print(f'Találati arány : {str(100 * len(talalatok) // len(jo_valaszok))} % ')
             print('Hiányzó elemek : '+ ', '.join(jo_valaszok.difference(fels_beirt_valasz)))
             print('Hibás tippek : ', ', '.join(fels_beirt_valasz.difference(jo_valaszok)))
-            print('A pontszámod : ',str(fels_pont))
-            print('A megoldási idő : ',ido)
+            print(f'A pontszámod : {str(fels_pont)}')
+            print(f'A megoldási idő : {ido}')
             print('')
             if fels_pont > int(TopScoreFelsorol[1]):
                 print('Gratulálunk! Rekordot döntöttél!')
@@ -159,11 +159,11 @@ def felsorol_kviz():
 def results(pont, kerdesek_sz, eltelt_ido, helyes_valaszok):
     print('')
     print('------------------------------------------------')
-    print('Eredmeny: ' + str(100 * helyes_valaszok // kerdesek_sz) + '%')
-    print('A helyes válaszok száma: ' + str(helyes_valaszok) + ' volt.')
-    print('A kérdések száma: ' + str(kerdesek_sz) + ' volt.')
-    print('A pontszámod : ' + str(pont))
-    print('A megoldási idő :', eltelt_ido)
+    print(f'Eredmeny: {str(100 * helyes_valaszok // kerdesek_sz)} %')
+    print(f'A helyes válaszok száma: {str(helyes_valaszok)} volt.')
+    print(f'A kérdések száma: {str(kerdesek_sz)} volt.')
+    print(f'A pontszámod : {str(pont)}')
+    print(f'A megoldási idő :{eltelt_ido}')
     print('------------------------------------------------')
 
 def topScoreWrite(normal, felsorol, tipp):
