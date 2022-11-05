@@ -1,9 +1,10 @@
 from datetime import datetime
-import random
+import random, re
 
 felsorol_kerdesek_valaszok = [
-    ('Sorolja fel a naprendszer bolygóit. ',{'merkur', 'vénusz','föld', 'mars', 'jupiter', 'szaturnusz', 'neptunusz', 'uránusz', 'plútó'}),
-    ('Sorolja fel a nemesgázok neveit. ',{'argon','hélium', 'neon', 'kripton', 'xenon', 'radon'}),
+    ('Sorolja fel a naprendszer bolygóit. ', {'merkur', 'vénusz','föld', 'mars', 'jupiter', 'szaturnusz', 'neptunusz', 'uránusz', 'plútó'}),
+    
+    ('Sorolja fel a nemesgázok neveit. ', {'argon','hélium', 'neon', 'kripton', 'xenon', 'radon'}),
 ]
 europa_tavai_terulet = {
         'Ladoga': 17700,
@@ -119,7 +120,7 @@ def tippelos_kviz():
         
 
 def felsorol_kviz():
-        fels_pont, fels_beirt_valasz = 0, set()
+        fels_pont, fels_beirt_valasz, talalatok = 0, set(), set()
         TopScoreFelsorol = topScoreRead()
         for fels_kerdes, fels_valasz in felsorol_kerdesek_valaszok:
             fels_beirt_valasz.clear()
@@ -127,8 +128,8 @@ def felsorol_kviz():
             print(f'A kérdés : {fels_kerdes}')
             start = datetime.now()
             while True:
-                user_valasz = input('Kérem a válaszokat kisbetűvel (vagy vége) ')
-                if user_valasz == 'vége':
+                user_valasz = input('Kérem a válaszokat (vagy vége) ')
+                if bool(re.search(r'^[Vv][eé]ge$',user_valasz)):
                     break
                 elif user_valasz == '':
                     continue
@@ -142,14 +143,16 @@ def felsorol_kviz():
                 fels_beirt_valasz.add(user_valasz)
                 talalatok = jo_valaszok.intersection(fels_beirt_valasz)
                 ido = datetime.now()-start
-            print('')
-            print('Találatok : ' + ' ,'.join(talalatok))
-            print(f'Találati arány : {str(100 * len(talalatok) // len(jo_valaszok))} % ')
-            print('Hiányzó elemek : '+ ', '.join(jo_valaszok.difference(fels_beirt_valasz)))
-            print('Hibás tippek : ', ', '.join(fels_beirt_valasz.difference(jo_valaszok)))
-            print(f'A pontszámod : {str(fels_pont)}')
-            print(f'A megoldási idő : {ido}')
-            print('')
+            if bool(talalatok):
+                print('')
+                print('Találatok : ' + ' ,'.join(talalatok))
+                print(f'Találati arány : {str(100 * len(talalatok) // len(jo_valaszok))} % ')
+                print('Hiányzó elemek : '+ ', '.join(jo_valaszok.difference(fels_beirt_valasz)))
+                print('Hibás tippek : ', ', '.join(fels_beirt_valasz.difference(jo_valaszok)))
+                print(f'A pontszámod : {str(fels_pont)}')
+                print(f'A megoldási idő : {ido}')
+                print('')
+            
             if fels_pont > int(TopScoreFelsorol[1]):
                 print('Gratulálunk! Rekordot döntöttél!')
                 topScoreWrite(TopScoreFelsorol[0], fels_pont, TopScoreFelsorol[2])
