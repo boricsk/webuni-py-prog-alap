@@ -1,0 +1,4 @@
+Osztályok
+1. Saját kvíz objektum oriántáltá tétele
+2. Sikidomok mintájára a térbeli alakzatok megvalósítása
+
