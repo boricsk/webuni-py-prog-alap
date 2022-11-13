@@ -13,7 +13,7 @@ class Kerdes(ABC):
     def __init__(self, kerdes, helyes_valasz) -> None:
         self.kerdes = kerdes
         self.helyes_valasz = helyes_valasz
-    
+            
     def kerdest_feltesz(self):
         valasz = input(self.kerdes + ' ')
         helyes_e, plussz_info = self._valaszt_kiertekel(valasz)

@@ -3,7 +3,7 @@ import random, re
 
 felsorol_kerdesek_valaszok = [
     ('Sorolja fel a naprendszer bolygóit. ', {'merkur', 'vénusz','föld', 'mars', 'jupiter', 'szaturnusz', 'neptunusz', 'uránusz', 'plútó'}),
-    
+
     ('Sorolja fel a nemesgázok neveit. ', {'argon','hélium', 'neon', 'kripton', 'xenon', 'radon'}),
 ]
 europa_tavai_terulet = {
@@ -80,7 +80,7 @@ europa_tavai_terulet = {
         'Syamozero': 265,
         'Akkajaure': 261,
         'Közép-Kuyto': 257,
-}
+ }
 
 def fels_get_len():
     return str(len(felsorol_kerdesek_valaszok))
@@ -88,7 +88,7 @@ def fels_get_len():
 
 def tippelos_kviz():
     tipp_pont, jo_valaszok, tipp_valaszlehetoseg, tipp_kerdesek_szama, TopScoreFelsorol = 0, 0, 4, 5, topScoreRead()    
-    
+        
     for tavak in random.sample(list(europa_tavai_terulet.keys()), tipp_kerdesek_szama):
         helyes_valasz = europa_tavai_terulet[tavak]
         helytelen_valaszok = list(europa_tavai_terulet.values())
@@ -153,7 +153,7 @@ def felsorol_kviz():
                 print(f'A pontszámod : {str(fels_pont)}')
                 print(f'A megoldási idő : {ido}')
                 print('')
-            
+        
             if fels_pont > int(TopScoreFelsorol[1]):
                 print('Gratulálunk! Rekordot döntöttél!')
                 topScoreWrite(TopScoreFelsorol[0], fels_pont, TopScoreFelsorol[2])
@@ -178,7 +178,6 @@ def topScoreWrite(normal, felsorol, tipp):
     for elem in TopScores:
         print(elem, file=TopScoreFile)
     TopScoreFile.close()
-
 
 def topScoreRead():
     TopScores = []

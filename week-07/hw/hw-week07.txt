@@ -2,3 +2,7 @@ Osztályok
 1. Saját kvíz objektum oriántáltá tétele
 2. Sikidomok mintájára a térbeli alakzatok megvalósítása
 
+Mágikus függvények
+1. Kviz iterátor létrehozása
+2. Aritmetika megvalósítása : alapműveletek, rövidített értékadás, bitműveletek, összehasonlítás
+Öteletek : 3 értékes jegyre kerekített teljes aritmetika, római szám, 4 számjegyes lebegőpontos ABCD : A,BC * 10^D-3

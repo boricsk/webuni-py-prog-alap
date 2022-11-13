@@ -1,0 +1,75 @@
+import re
+
+class RomaiSzam:
+    def __init__(self, szam) -> None:
+        if type(szam) is str:
+            self.arab = RomaiSzamKonverter.arabszammakonvertal(szam)
+        else:
+            self.arab = szam
+    def __str__(self): return RomaiSzamKonverter.romai_konvertal(self.arab) 
+    def __add__(self, masik): return RomaiSzam(self.arab + masik.arab)
+    def __sub__(self, masik): return RomaiSzam(self.arab - masik.arab)
+    def __mul__(self, masik): return RomaiSzam(self.arab * masik.arab)
+    def __mod__(self, masik): return RomaiSzam(self.arab % masik.arab)        
+    def __truediv__(self, masik): return RomaiSzam(self.arab // masik.arab) #átnevetzük, hogy a / kelljen használni híváskor        
+    
+class RomaiSzamKonverter:
+    @staticmethod
+    def arabszammakonvertal(romai):
+        if not bool(re.search(r'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$', romai)):
+            return(f'Hibás Római szám : {romai}')
+        
+        romai_szamertekek ={'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        #végig kell menni a szamjegyeken az utolso elottiig. meg kell nézni, h a kovetkezo szam nagyobb-e vagy kisseb-e mint az aktualis
+        #ha nagyobb hozza kell adni, ha kissebb akkor ki kell vonni.
+        #példa: 
+        #M a C nél nagyobb, tehát M-et hozzáadunk (1000)
+        #C kisseb az M nél, ezért 100-at ki kell vonni (900)
+        #M nagyobb mint az L ezért + 1000 (1900)
+        #L nagyobb mint X ezér +50 (1950)
+        #X egyenlő X ekkor is hozzáadás van 3x 10 et (1980)
+        #I kissebb mint V kivon 1-et (1979)
+        #A V-t (utolsó mindenkép hozzá kell adni) (1984)
+        
+        erdmeny = 0
+        for i in range(len(romai)-1):
+            aktualis = romai_szamertekek[romai[i]] # a romai szamertekekbol mutatja az arab megfelelőt
+            kovetkezo = romai_szamertekek[romai[i+1]]
+            if aktualis<kovetkezo:
+                erdmeny -= aktualis
+            else:
+                erdmeny += aktualis
+        erdmeny += romai_szamertekek[romai[-1]] #utolső érték hozzáadáas
+        return erdmeny
+
+    @staticmethod
+    def romai_konvertal(szam):
+        
+        def szamjegyet_konvertal(szamjegy, egyesek, otosok, tizesek):
+            if szamjegy <= 3:
+                return szamjegy * egyesek
+            elif szamjegy == 4:
+                return egyesek + otosok
+            elif szamjegy <= 8:
+                return otosok + (szamjegy - 5) * egyesek
+            else:
+                return egyesek + tizesek
+        
+        if type(szam) is not int or szam < 1 or szam > 3999:
+            return f'Nem lehet római számmá konvertálni : {szam}'
+        
+        ezresek = (szam // 1000) * 'M'
+        szazasok = szamjegyet_konvertal((szam // 100) % 10,'C', 'D', 'M' )
+        tizesek = szamjegyet_konvertal((szam // 10) % 10, 'X', 'L', 'C')
+        egyesek = szamjegyet_konvertal((szam % 10), 'I', 'V', 'X')
+        return ezresek + szazasok + tizesek + egyesek
+
+print(RomaiSzam('XIV') + RomaiSzam('VIII'))
+print(RomaiSzam('XIV') - RomaiSzam('VIII'))
+print(RomaiSzam('XIV') * RomaiSzam('VIII'))
+print(RomaiSzam('XIV') / RomaiSzam('VIII'))
+print(RomaiSzam('XIV') % RomaiSzam('VIII'))
+print(RomaiSzam('XIV') + RomaiSzam('VIII') * RomaiSzam('II'))
+print((RomaiSzam('XIV') + RomaiSzam('VIII')) * RomaiSzam('II'))
+
+
