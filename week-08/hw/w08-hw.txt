@@ -1,0 +1,7 @@
+Funkcionális programozás
+1. Kvizben kerdest feltesz fgv-be a kwargs beletétele
+2. Valamilyen aritmetika megvalósítása Funkcionálisan
+
+Többszörös feltétel
+1. Kviz if else cserélni match case (OO előtti)
+2. Hónapok hosszának meghatározása mach case

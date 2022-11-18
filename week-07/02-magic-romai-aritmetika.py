@@ -64,7 +64,7 @@ class RomaiSzamKonverter:
         egyesek = szamjegyet_konvertal((szam % 10), 'I', 'V', 'X')
         return ezresek + szazasok + tizesek + egyesek
 
-print(RomaiSzam('XIV') + RomaiSzam('VIII'))
+print(RomaiSzam(13) + RomaiSzam('VIII'))
 print(RomaiSzam('XIV') - RomaiSzam('VIII'))
 print(RomaiSzam('XIV') * RomaiSzam('VIII'))
 print(RomaiSzam('XIV') / RomaiSzam('VIII'))
@@ -72,4 +72,4 @@ print(RomaiSzam('XIV') % RomaiSzam('VIII'))
 print(RomaiSzam('XIV') + RomaiSzam('VIII') * RomaiSzam('II'))
 print((RomaiSzam('XIV') + RomaiSzam('VIII')) * RomaiSzam('II'))
 
-
+print(1984 % 10)
