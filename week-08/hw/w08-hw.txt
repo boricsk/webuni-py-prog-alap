@@ -5,3 +5,11 @@ Funkcionális programozás
 Többszörös feltétel
 1. Kviz if else cserélni match case (OO előtti)
 2. Hónapok hosszának meghatározása mach case
+
+Enum
+1. Kvizben a tipusok átírása enumra
+2. Hónapok hossza enummal
+
+Exception
+1. Kvizbe ha a user formailag nem jó választ ad akkor kivételkezeléssel oldjuk meg, kérje újra addig amig nem lesz jó.
+2. Tetszőleges korábbi feladat amiben van hibakezelés át kell alakitani ezt kivetelkezelesre. (Sikidom a match-nál)
