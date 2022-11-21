@@ -1,0 +1,3 @@
+Időkezelés
+1. Kvíz dátumkérdések bevezetése, hibakezelés
+2. 2022 összes palindrom idejének megkeresése EEEE-HH-NN OO-PP-MM formátumban
