@@ -1,3 +1,7 @@
 Időkezelés
 1. Kvíz dátumkérdések bevezetése, hibakezelés
 2. 2022 összes palindrom idejének megkeresése EEEE-HH-NN OO-PP-MM formátumban
+
+Filekezelés
+1. Kviz kerdeseket, helyes válaszokat file-ból olvassa, hibakezeléssel
+2. Valamelyik korábbi feladatot fileból olvasni és fileba irni, pl LNKO
