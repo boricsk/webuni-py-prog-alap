@@ -1,0 +1,10 @@
+<ember azonosito="1">
+    <nev>Józska</nev>
+    <eletkor>40</eletkor>
+    <hobbik>
+        <hobbi>bélyeggyűjtés</hobbi>
+        <hobbi>kerékpározás</hobbi>
+        <hobbi>foci</hobbi>
+    </hobbik>
+    <hazas>True</hazas>
+</ember>
