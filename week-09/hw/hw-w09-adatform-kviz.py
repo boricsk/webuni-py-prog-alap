@@ -1,6 +1,6 @@
 from datetime import datetime
 from enum import Enum, auto
-import random, re
+import random, re, json
 import os
 
 class KerdesTipus(Enum):
@@ -10,111 +10,13 @@ class KerdesTipus(Enum):
     
 class UserInputError(Exception): pass
 
-kerdesek_szama = helyes_valaszok = pont = 0
+kerdesek_szama, helyes_valaszok, pont = 0,0,0
 
-kerdesek_es_valaszok = [
-            (KerdesTipus.SZOVEG, 'Itt volt Magyarország első egyeteme. :','Pécs'),
-            (KerdesTipus.SZOVEG, 'Itt gyóntak az árpád házi királyok. :','Báta'),
-            (KerdesTipus.SZOVEG, '1687 Augusztusában itt mértek döntő vereséget a török seregre. :', 'Nagyharsány'),
-            (KerdesTipus.SZOVEG, 'Melyik várost viseli a "Koronázóváros" címet? :','Székesfehérvár'),
-            (KerdesTipus.SZOVEG, 'Melyik várost viseli a "Leghűségesebb város" címet? :','Sopron'),
-            (KerdesTipus.EGESZ_SZAM, 'Mennyi a Föld-Hold távolsága kilóméterben? :',384400),
-            (KerdesTipus.EGESZ_SZAM, 'Mekkora a Föld átmérője kilóméterben? :',12742),
-            (KerdesTipus.EGESZ_SZAM, 'Az Aranybulla kiadásának éve :',1222),
-            (KerdesTipus.EGESZ_SZAM, 'A HTTP protokol alapértelmezés szerint ezen a porton kommunikál :',80),
-            (KerdesTipus.TIZEDES_SZAM, 'Mekkora a nehézségi gyorsulás értéke a Földön? :',9.81),
-            (KerdesTipus.TIZEDES_SZAM, 'Mekkora a pi értéke ? :',3.14),
-            (KerdesTipus.TIZEDES_SZAM, 'Mekkora a nehézségi gyorsulás értéke a Holdon? :',1.6),
-            (KerdesTipus.TIZEDES_SZAM, 'Mekkora a nehézségi gyorsulás értéke a Marson? :',3.69),
-            
-            ]
 
 felsorol_kerdesek_valaszok = [
     ('Sorolja fel a naprendszer bolygóit. ', {'merkur', 'vénusz','föld', 'mars', 'jupiter', 'szaturnusz', 'neptunusz', 'uránusz', 'plútó'}),
     
     ('Sorolja fel a nemesgázok neveit. ', {'argon','hélium', 'neon', 'kripton', 'xenon', 'radon'}),
-]
-europa_tavai_terulet = {
-        'Ladoga': 17700,
-        'Onyega': 9894,
-        'Kuybyshev': 6450,
-        'Vänern': 5655,
-        'Rybinsk': 4580,
-        'Saimaa': 4377,
-        'Csúd': 3555,
-        'Tsimlyansk': 2702,
-        'Kremenchuk':2250,
-        'Kakhovka:':2155,
-        'Vättern': 1893,
-        'Szaratov': 1831,
-        'Gorkij': 1591,
-        'Suur-Saimaa': 1377,
-        'Beloye': 1290,
-        'Vygozero': 1250,
-        'Mälaren': 1140,
-        'IJsselmeer': 1100,
-        'Päijänne': 1081,
-        'Inari': 1040,
-        'Kijev': 992,
-        'Topozero': 986,
-        'Ilmen': 982,
-        'Sevan-tó': 940,
-        'Segozero:': 906,
-        'Pielinen': 894,
-        'Oulujärvi': 887,
-        'Imandra': 876,
-        'Pihlajavesi': 713,
-        'Pihkva': 710,
-        'Markermeert': 700,
-        'Vaskapuk': 700,
-        'Kaniv': 675,
-        'Pyaozero': 659,
-        'Kovdozero': 608,
-        'Mingachevir': 605,
-        'Orivesi': 601,
-        'Balaton': 592,
-        'Genf': 581,
-        'Dnyiprodzerzsinszk': 567,
-        'Haukivesi': 562,
-        'Constance': 541,
-        'Keitele': 494,
-        'Hjälmaren': 485,
-        'Kallavesi': 473,
-        'Storsjön': 464,
-        'Puruvesi': 421,
-        'Vozhe': 416,
-        'Razelm': 415,
-        'Kubenskoye': 407,
-        'Lough Neagh': 388,
-        'Sheksninskoye': 380,
-        'Shkodra': 370,
-        'Garda': 370,
-        'Mjøsa':365,
-        'Pyhäselkä': 361,
-        'Ohrid': 358,
-        'Lacha': 356,
-        'Siljan': 354,
-        'Manych-Gudilo': 344,
-        'Puula': 330,
-        'Torneträsk': 330,
-        'Ivankovo': 327,
-        'Vodlozero': 322,
-        'Lokka': 315,
-        'Umbozero': 313,
-        'Neusiedl': 315,
-        'Höytiäinen': 282,
-        'Nagy Prespa': 273,
-        'Võrtsjärv': 270,
-        'Syamozero': 265,
-        'Akkajaure': 261,
-        'Közép-Kuyto': 257,
-}
-
-datum_kerdesek_es_helyes_valaszok = [
-    ('Mikor született Petőfi Sándor? ', '1823-01-01'),
-    ('Mikor volt az első holdraszállás? ', '1969-07-20'),
-    ('Mikor kiáltották ki a köztásraságot Magyarországon? ', '1989-10-23'),
-    
 ]
 
 def fels_get_len():
@@ -122,6 +24,15 @@ def fels_get_len():
 
 def tippelos_kviz():
     tipp_pont, jo_valaszok, tipp_valaszlehetoseg, tipp_kerdesek_szama, TopScoreFelsorol = 0, 0, 4, 5, topScoreRead()    
+   
+    dataFile = 'europa-tavai.json'
+    if os.path.isfile(dataFile):
+        with open('europa-tavai.json', encoding='utf-8') as TippelosFile:
+            europa_tavai_json = json.load(TippelosFile)
+            europa_tavai_terulet = dict(europa_tavai_json)
+    else:
+        print(f'A játék nem folytatható, mert az adatfile ({dataFile}) hiányzik!')
+        exit()
     
     for tavak in random.sample(list(europa_tavai_terulet.keys()), tipp_kerdesek_szama):
         helyes_valasz = europa_tavai_terulet[tavak]
@@ -166,6 +77,7 @@ def tippelos_kviz():
 def felsorol_kviz():
         fels_pont, fels_beirt_valasz, talalatok = 0, set(), set()
         TopScoreFelsorol = topScoreRead()
+   
         for fels_kerdes, fels_valasz in felsorol_kerdesek_valaszok:
             fels_beirt_valasz.clear()
             jo_valaszok = set(fels_valasz)
@@ -237,9 +149,9 @@ def kerdest_feltesz(kerdes, helyes_valasz, tipus):
     while True:
         valasz = input(kerdes)
         match tipus:
-            case KerdesTipus.SZOVEG:
+            case 'SZOVEG':
                 break
-            case KerdesTipus.EGESZ_SZAM:
+            case 'EGESZ_SZAM':
                 try:
                     if valasz.isdigit():
                         break
@@ -247,7 +159,7 @@ def kerdest_feltesz(kerdes, helyes_valasz, tipus):
                         raise UserInputError(f'Hibás bevitel!')
                 except UserInputError as e:
                     print(f'Hiba : {e}')
-            case KerdesTipus.TIZEDES_SZAM:
+            case 'TIZEDES_SZAM':
                 try:
                     valasz_float = float(valasz)
                     break
@@ -256,14 +168,14 @@ def kerdest_feltesz(kerdes, helyes_valasz, tipus):
    
     global pont
     match tipus:
-        case KerdesTipus.SZOVEG:
+        case 'SZOVEG':
             if valasz == helyes_valasz:
                 pont += 5
                 return True, 'A valasz helyes'
             else:
                 return False, 'A válasz helytelen'
 
-        case KerdesTipus.EGESZ_SZAM:
+        case 'EGESZ_SZAM':
             valasz_szam = int(valasz)
             if valasz_szam == helyes_valasz:
                 pont += 5
@@ -282,7 +194,7 @@ def kerdest_feltesz(kerdes, helyes_valasz, tipus):
                     return False, f'A válasz helytelen. Az eltérés : {str(round(elteres, 3))} %. Mivel 3-4 százalék között voltál. A jutalmad 2 pont.'
                 case n if n > 4:
                     return False, f'A válasz helytelen. Az eltérés : {str(round(elteres, 3))} %. Mivel 4 százalékon kívül voltál sajna nem jár pont.'
-        case KerdesTipus.TIZEDES_SZAM:
+        case 'TIZEDES_SZAM':
             tolerancia = 0.05
             #valasz_float = float(valasz)
             if helyes_valasz - tolerancia < valasz_float < helyes_valasz + tolerancia:
@@ -292,6 +204,8 @@ def kerdest_feltesz(kerdes, helyes_valasz, tipus):
                 return False, 'A válasz helytelen! A helyes válasz ' + str(helyes_valasz) + ' lett volna.'
 
 def datum_kviz():
+    running = False
+    
     if os.name == 'nt':
         os.system('cls')
     else:
@@ -300,19 +214,35 @@ def datum_kviz():
     datum_pont, datum_kerdesek_szama, jo_valaszok_szama, valasz, topScoreDate = 0,0,0,'',topScoreRead()
     start = datetime.now()
     print('A válaszokat EEEE-HH-NN kérem!')
-    datum_kerdesek_szama = len(datum_kerdesek_es_helyes_valaszok)
-    for kerdes, helyes_valasz in datum_kerdesek_es_helyes_valaszok:
+    
+    try:
+        with open('datum-kerdes.kviz', encoding='utf-8') as datum_kerdesek_file:
+            datum_kerdesek = datum_kerdesek_file.readlines()
+        running = True
+    except Exception as e:
+        print(f'Hiba a kérdéseket tartalmazó file megnyitásakor! {e}')
+    
+    try:
+        with open('datum-valasz.kviz', encoding='utf-8') as datum_valasz_file:
+            datum_valasz = datum_valasz_file.readlines()
+        running = True
+    except Exception as e:
+        print(f'Hiba a válaszokat tartalmazó file megnyitásakor! {e}')
+    
+    datum_kerdesek_szama = len(datum_kerdesek)
+    
+    for kerdes, helyes_valasz in zip(datum_kerdesek, datum_valasz):
         
-        while True:
-            valasz = input(kerdes)
-            if bool(re.search(r'^[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$',valasz)):
+        while running:
+            valasz = input(kerdes.strip() + ' ')
+            if bool(re.search(r'^[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$',valasz.strip())):
                 break
             else:
                 print('A válasz formátuma nem megfelelő!')
             
             
-        valasz_datum = datetime.fromisoformat(valasz)
-        helyes_datum = datetime.fromisoformat(helyes_valasz)
+        valasz_datum = datetime.fromisoformat(valasz.strip())
+        helyes_datum = datetime.fromisoformat(helyes_valasz.strip())
         elteres = (helyes_datum - valasz_datum).days
         if elteres == 0:
             print('A válasz helyes!')
@@ -334,7 +264,7 @@ else:
 
 print('')
 print('---------------------------------------------------------------')
-print('1 - Normál kvíz. ',str(len(kerdesek_es_valaszok)), 'kérdés.')
+print('1 - Normál kvíz.')
 print('2 - Felsorolásos kvíz.', fels_get_len(), 'kérdés.')
 print('3 - Tippelős kvíz. (Európa tavainak területét kell eltalálnod.)')
 print('4 - Dátum kvíz.')
@@ -353,10 +283,17 @@ while True:
 match mode:
     case '1':
         start = datetime.now()
-        
-        for tipus, kerdes, valasz in kerdesek_es_valaszok:
+        NormalDataFile = 'normal-kviz.json'
+        if os.path.isfile(NormalDataFile):
+            with open(NormalDataFile, encoding='utf-8') as NormalDataFile:
+                kerdesek_es_valaszok_json = json.load(NormalDataFile)
+        else:
+            print(f'A játék nem folytatható, mert az adatfile ({NormalDataFile}) hiányzik!')
+            exit()
+            
+        for normalKvizAdatok in kerdesek_es_valaszok_json:
             kerdesek_szama +=1
-            helyes_e, valasz_szöveg = kerdest_feltesz(kerdes, valasz, tipus)
+            helyes_e, valasz_szöveg = kerdest_feltesz(normalKvizAdatok['kerdes'], normalKvizAdatok['valasz'], normalKvizAdatok['KerdesTipus'])
             print(valasz_szöveg)
             if helyes_e:
                 helyes_valaszok +=1

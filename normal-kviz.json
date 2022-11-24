@@ -1,0 +1,67 @@
+[
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "Itt volt Magyarország első egyeteme. :",
+        "valasz": "Pécs"
+    },
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "Itt gyóntak az árpád házi királyok. :",
+        "valasz": "Báta"
+    },
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "1687 Augusztusában itt mértek döntő vereséget a török seregre. :",
+        "valasz": "Nagyharsány"
+    },
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "Melyik várost viseli a Koronázóváros címet? :",
+        "valasz": "Székesfehérvár"
+    },
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "Melyik várost viseli a Leghűségesebb város címet? :",
+        "valasz": "Sopron"
+    },
+    {
+        "KerdesTipus": "EGESZ_SZAM",
+        "kerdes": "Mennyi a Föld-Hold távolsága kilóméterben? :",
+        "valasz": 384400
+    },
+    {
+        "KerdesTipus": "EGESZ_SZAM",
+        "kerdes": "Mekkora a Föld átmérője kilóméterben? :",
+        "valasz": 12742
+    },
+    {
+        "KerdesTipus": "EGESZ_SZAM",
+        "kerdes": "'Az Aranybulla kiadásának éve :",
+        "valasz": 1222
+    },
+    {
+        "KerdesTipus": "EGESZ_SZAM",
+        "kerdes": "A HTTP protokol alapértelmezés szerint ezen a porton kommunikál :",
+        "valasz": 80
+    },
+    {
+        "KerdesTipus": "TIZEDES_SZAM",
+        "kerdes": "Mekkora a nehézségi gyorsulás értéke a Földön? :",
+        "valasz": 9.81
+    },
+    {
+        "KerdesTipus": "TIZEDES_SZAM",
+        "kerdes": "Mennyi a PI értéke? :",
+        "valasz": 3.1415927
+    },
+    {
+        "KerdesTipus": "TIZEDES_SZAM",
+        "kerdes": "Mekkora a nehézségi gyorsulás értéke a Holdon? :",
+        "valasz": 1.6
+    },
+    {
+        "KerdesTipus": "TIZEDES_SZAM",
+        "kerdes": "Mekkora a nehézségi gyorsulás értéke a Marson? :",
+        "valasz": 3.69
+    }
+]

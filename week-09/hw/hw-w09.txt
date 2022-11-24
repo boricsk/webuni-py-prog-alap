@@ -5,3 +5,7 @@ Időkezelés
 Filekezelés
 1. Kviz kerdeseket, helyes válaszokat file-ból olvassa, hibakezeléssel
 2. Valamelyik korábbi feladatot fileból olvasni és fileba irni, pl LNKO
+
+Adatformátumok
+1. kvíz JSON bevezetése file-ból olvassa
+2. Collatz mintájára JSON-osítani valamelyik korábbi feladatot
