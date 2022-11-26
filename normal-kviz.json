@@ -6,7 +6,7 @@
     },
     {
         "KerdesTipus": "SZOVEG",
-        "kerdes": "Itt gyóntak az árpád házi királyok. :",
+        "kerdes": "Itt gyóntak az Árpád Házi királyok. :",
         "valasz": "Báta"
     },
     {
@@ -36,7 +36,7 @@
     },
     {
         "KerdesTipus": "EGESZ_SZAM",
-        "kerdes": "'Az Aranybulla kiadásának éve :",
+        "kerdes": "Az Aranybulla kiadásának éve :",
         "valasz": 1222
     },
     {

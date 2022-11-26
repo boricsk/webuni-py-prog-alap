@@ -1,0 +1,11 @@
+[
+    {
+        "kerdes": "Sorolja fel a naprendszer bolygóit. ",
+        "valasz": ["merkur", "vénusz","föld", "mars", "jupiter", "szaturnusz", "neptunusz", "uránusz", "plútó"]
+    },
+
+    {
+        "kerdes": "Sorolja fel a nemesgázok neveit. ", 
+        "valasz": ["argon","hélium", "neon", "kripton", "xenon", "radon"]
+    }
+]

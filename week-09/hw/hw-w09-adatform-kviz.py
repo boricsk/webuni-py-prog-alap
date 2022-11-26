@@ -3,36 +3,25 @@ from enum import Enum, auto
 import random, re, json
 import os
 
-class KerdesTipus(Enum):
-    SZOVEG = auto()
-    EGESZ_SZAM = auto()
-    TIZEDES_SZAM = auto()
-    
 class UserInputError(Exception): pass
 
 kerdesek_szama, helyes_valaszok, pont = 0,0,0
 
-
-felsorol_kerdesek_valaszok = [
-    ('Sorolja fel a naprendszer bolygóit. ', {'merkur', 'vénusz','föld', 'mars', 'jupiter', 'szaturnusz', 'neptunusz', 'uránusz', 'plútó'}),
-    
-    ('Sorolja fel a nemesgázok neveit. ', {'argon','hélium', 'neon', 'kripton', 'xenon', 'radon'}),
-]
-
-def fels_get_len():
-    return str(len(felsorol_kerdesek_valaszok))
+def checkFileLocation(file):
+    if os.path.isfile(file):
+        return True
+    else:
+        print(f'A játék nem folytatható, mert az adatfile {file} hiányzik.')
+        exit()
 
 def tippelos_kviz():
     tipp_pont, jo_valaszok, tipp_valaszlehetoseg, tipp_kerdesek_szama, TopScoreFelsorol = 0, 0, 4, 5, topScoreRead()    
    
     dataFile = 'europa-tavai.json'
-    if os.path.isfile(dataFile):
+    if checkFileLocation(dataFile):
         with open('europa-tavai.json', encoding='utf-8') as TippelosFile:
             europa_tavai_json = json.load(TippelosFile)
             europa_tavai_terulet = dict(europa_tavai_json)
-    else:
-        print(f'A játék nem folytatható, mert az adatfile ({dataFile}) hiányzik!')
-        exit()
     
     for tavak in random.sample(list(europa_tavai_terulet.keys()), tipp_kerdesek_szama):
         helyes_valasz = europa_tavai_terulet[tavak]
@@ -72,16 +61,20 @@ def tippelos_kviz():
     if tipp_pont > int(TopScoreFelsorol[2]):
         print('Gratulálunk! Rekordot döntöttél!')
         topScoreWrite(TopScoreFelsorol[0], TopScoreFelsorol[1], tipp_pont, TopScoreFelsorol[3])
-        
 
 def felsorol_kviz():
         fels_pont, fels_beirt_valasz, talalatok = 0, set(), set()
         TopScoreFelsorol = topScoreRead()
-   
-        for fels_kerdes, fels_valasz in felsorol_kerdesek_valaszok:
+        felsorolDataFile = 'felsorol-kviz.json'
+        if checkFileLocation(felsorolDataFile):
+            with open(felsorolDataFile,encoding='utf-8') as felsorolDataFile:
+                felsorol_kerdesek_es_valaszok_json = json.load(felsorolDataFile)
+                
+        for felsKvizAdatok in felsorol_kerdesek_es_valaszok_json:
             fels_beirt_valasz.clear()
-            jo_valaszok = set(fels_valasz)
-            print(f'A kérdés : {fels_kerdes}')
+            
+            jo_valaszok = set(felsKvizAdatok['valasz'])
+            print(f"A kérdés : {felsKvizAdatok['kerdes']}")
             start = datetime.now()
             while True:
                 user_valasz = input('Kérem a válaszokat (vagy vége) ')
@@ -95,7 +88,7 @@ def felsorol_kviz():
                     case n if n in fels_beirt_valasz:
                         print('Ez már volt!')
                     
-                    case n if n in fels_valasz:
+                    case n if n in felsKvizAdatok['valasz']:
                         print('A válasz helyes!')
                         fels_pont +=1
                     
@@ -265,7 +258,7 @@ else:
 print('')
 print('---------------------------------------------------------------')
 print('1 - Normál kvíz.')
-print('2 - Felsorolásos kvíz.', fels_get_len(), 'kérdés.')
+print('2 - Felsorolásos kvíz.')
 print('3 - Tippelős kvíz. (Európa tavainak területét kell eltalálnod.)')
 print('4 - Dátum kvíz.')
 print('---------------------------------------------------------------')
@@ -284,13 +277,10 @@ match mode:
     case '1':
         start = datetime.now()
         NormalDataFile = 'normal-kviz.json'
-        if os.path.isfile(NormalDataFile):
+        if checkFileLocation(NormalDataFile):
             with open(NormalDataFile, encoding='utf-8') as NormalDataFile:
                 kerdesek_es_valaszok_json = json.load(NormalDataFile)
-        else:
-            print(f'A játék nem folytatható, mert az adatfile ({NormalDataFile}) hiányzik!')
-            exit()
-            
+                    
         for normalKvizAdatok in kerdesek_es_valaszok_json:
             kerdesek_szama +=1
             helyes_e, valasz_szöveg = kerdest_feltesz(normalKvizAdatok['kerdes'], normalKvizAdatok['valasz'], normalKvizAdatok['KerdesTipus'])

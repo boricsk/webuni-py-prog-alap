@@ -42,5 +42,5 @@ def goldbach_max(n):
 #     print(i, goldbach_par(i))
 
 start = datetime.now()
-print(goldbach_max(10_000))
+print(goldbach_max(100))
 print(datetime.now()-start)
