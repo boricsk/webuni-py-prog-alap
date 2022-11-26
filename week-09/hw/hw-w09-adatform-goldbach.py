@@ -7,7 +7,7 @@ primek = set()
 nem_primek = set()
 akt_megoldas_json = {}
 
-goldbachDataFile = 'goldbach.json'
+goldbachDataFile = './week-09/hw/goldbach.json'
 if os.path.isfile(goldbachDataFile):
     with open(goldbachDataFile) as goldbachData:
         akt_megoldas_json = json.load(goldbachData)
@@ -59,6 +59,6 @@ def goldbach_max(n):
 
 start = datetime.now()
 print(goldbach_max(100))
-with open('goldbach.json',mode='w') as goldbachDataW:
+with open('./week-09/hw/goldbach.json',mode='w') as goldbachDataW:
     json.dump(akt_megoldas_json, goldbachDataW, indent=4)
 print(datetime.now()-start)

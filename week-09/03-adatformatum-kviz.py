@@ -1,7 +1,7 @@
 #A kviz JSON-osítása
 import json
 
-with open('kviz.json', encoding='utf-8') as kerdesek_file:
+with open('./week-09/kviz.json', encoding='utf-8') as kerdesek_file:
     kerdesek = json.load(kerdesek_file)
 
 for kerdes_helyes_valas in kerdesek:

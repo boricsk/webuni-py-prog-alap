@@ -15,5 +15,5 @@ for i in range(N + 1):
 
 #print(primek)
 
-with open('primek.txt', 'w') as primekfile:
+with open('./week-09/primek.txt', 'w') as primekfile:
     primekfile.write(' '.join([str(prim) for prim in primek]))

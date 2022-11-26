@@ -8,7 +8,7 @@ A linken a világbank Magyarországra vonatkozó lekérdezése van.
 '''
 import json
 
-with open('vilagbank-hu.json', encoding='utf-8') as vilagbankFile:
+with open('./week-09/vilagbank-hu.json', encoding='utf-8') as vilagbankFile:
     vilagbank_hu =json.load(vilagbankFile)
 
 print(vilagbank_hu[1][0]['incomeLevel']['value']) # JSON adatok kibontása.

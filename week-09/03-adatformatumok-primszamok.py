@@ -16,11 +16,11 @@ for i in range(N + 1):
 
 #print(primek)
 
-with open('primek.json', 'w') as primekfile:
+with open('./week-09/primek.json', 'w') as primekfile:
     json.dump(primek, primekfile)
     #primekfile.write(' '.join([str(prim) for prim in primek]))
     
-with open('primek.json') as primek_file:
+with open('./week-09/primek.json') as primek_file:
     primek = json.load(primek_file)
 
 print(primek)

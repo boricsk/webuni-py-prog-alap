@@ -35,10 +35,10 @@ def fibonacci_gyors2(n):
         return fibonacci_szam[x]
     return fib_rekurziv(n)
     
-with open('fibonacci.txt','w', encoding='utf-8') as fibofile:
+with open('./week-09/hw/fibonacci.txt','w', encoding='utf-8') as fibofile:
     for i in range(50):
         print(i, fibonacci_gyors2(i), file=fibofile)
         
-with open('fibonacci.txt', encoding='utf-8') as fibofile:
+with open('./week-09/hw/fibonacci.txt', encoding='utf-8') as fibofile:
     fib_kiir = fibofile.read()
 print(fib_kiir)

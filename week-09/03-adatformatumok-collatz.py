@@ -9,7 +9,7 @@ from datetime import datetime
 import json
 import os
 
-collatzGyorsitotarFile = 'collatz.json'
+collatzGyorsitotarFile = './week-09/collatz.json'
 if os.path.isfile(collatzGyorsitotarFile):
     with open(collatzGyorsitotarFile) as CollatzFile1:
         collatz_gyorsitotar = json.load(CollatzFile1)
@@ -51,5 +51,5 @@ start = datetime.now()
 print(leghosszab_legmagasabb_collatz_ertek(20))
 print(datetime.now()-start)
 
-with open('collatz.json','w') as collatzFile:
+with open('./week-09/collatz.json','w') as collatzFile:
     json.dump(collatz_gyorsitotar, collatzFile, indent=4) # lehet formázni

@@ -1,6 +1,6 @@
 
 import json
-with open('morze.json') as morzeFile:
+with open('./week-09/morze.json') as morzeFile:
     morzekódok = json.load(morzeFile)
 
 karakter_morze_atalakito = dict(morzekódok)

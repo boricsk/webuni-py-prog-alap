@@ -17,7 +17,7 @@ def checkFileLocation(file):
 def tippelos_kviz():
     tipp_pont, jo_valaszok, tipp_valaszlehetoseg, tipp_kerdesek_szama, TopScoreFelsorol = 0, 0, 4, 5, topScoreRead()    
    
-    dataFile = 'europa-tavai.json'
+    dataFile = './week-09/hw/europa-tavai.json'
     if checkFileLocation(dataFile):
         with open('europa-tavai.json', encoding='utf-8') as TippelosFile:
             europa_tavai_json = json.load(TippelosFile)
@@ -65,7 +65,7 @@ def tippelos_kviz():
 def felsorol_kviz():
         fels_pont, fels_beirt_valasz, talalatok = 0, set(), set()
         TopScoreFelsorol = topScoreRead()
-        felsorolDataFile = 'felsorol-kviz.json'
+        felsorolDataFile = './week-09/hw/felsorol-kviz.json'
         if checkFileLocation(felsorolDataFile):
             with open(felsorolDataFile,encoding='utf-8') as felsorolDataFile:
                 felsorol_kerdesek_es_valaszok_json = json.load(felsorolDataFile)
@@ -125,14 +125,14 @@ def results(pont, kerdesek_sz, eltelt_ido, helyes_valaszok):
 
 def topScoreWrite(normal, felsorol, tipp, datum):
     TopScores = [normal, felsorol, tipp, datum]
-    TopScoreFile = open('kviz.dat','w')
+    TopScoreFile = open('./week-09/hw/kviz.dat','w')
     for elem in TopScores:
         print(elem, file=TopScoreFile)
     TopScoreFile.close()
 
 def topScoreRead():
     TopScores = []
-    TopScoreFile = open('kviz.dat','r')
+    TopScoreFile = open('./week-09/hw/kviz.dat','r')
     for sor in TopScoreFile:
         TopScores.append(sor.strip())
     TopScoreFile.close()
@@ -209,14 +209,14 @@ def datum_kviz():
     print('A válaszokat EEEE-HH-NN kérem!')
     
     try:
-        with open('datum-kerdes.kviz', encoding='utf-8') as datum_kerdesek_file:
+        with open('./week-09/hw/datum-kerdes.kviz', encoding='utf-8') as datum_kerdesek_file:
             datum_kerdesek = datum_kerdesek_file.readlines()
         running = True
     except Exception as e:
         print(f'Hiba a kérdéseket tartalmazó file megnyitásakor! {e}')
     
     try:
-        with open('datum-valasz.kviz', encoding='utf-8') as datum_valasz_file:
+        with open('./week-09/hw/datum-valasz.kviz', encoding='utf-8') as datum_valasz_file:
             datum_valasz = datum_valasz_file.readlines()
         running = True
     except Exception as e:
@@ -276,7 +276,7 @@ while True:
 match mode:
     case '1':
         start = datetime.now()
-        NormalDataFile = 'normal-kviz.json'
+        NormalDataFile = './week-09/hw/normal-kviz.json'
         if checkFileLocation(NormalDataFile):
             with open(NormalDataFile, encoding='utf-8') as NormalDataFile:
                 kerdesek_es_valaszok_json = json.load(NormalDataFile)
