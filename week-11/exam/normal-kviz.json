@@ -1,0 +1,92 @@
+[
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "Itt volt Magyarország első egyeteme. :",
+        "valasz": "Pécs",
+        "regex": "^P[eé]cs$"
+    },
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "Itt gyóntak az Árpád Házi királyok. :",
+        "valasz": "Báta",
+        "regex": "^B[aá]ta$"
+    },
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "1687 Augusztusában itt mértek döntő vereséget a török seregre. :",
+        "valasz": "Nagyharsány",
+        "regex": "^Nagyhars[aá]ny$"
+    },
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "Melyik várost viseli a Koronázóváros címet? :",
+        "valasz": "Székesfehérvár",
+        "regex": "^Sz[eé]kesfeh[eé]rv[aá]r$"
+    },
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "Melyik várost viseli a Leghűségesebb város címet? :",
+        "valasz": "Sopron",
+        "regex": "^Sopron$"
+    },
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "Ki játszotta a Bodie-t és a Doyle-t a The Professionals-ban? :",
+        "valasz": "Lewis Collins és Martin Shaw",
+        "regex": "^(Lewis Collins( és |,| |, | ,){1}Martin Shaw)$"
+    },
+    {
+        "KerdesTipus": "SZOVEG",
+        "kerdes": "Paul Hunn milyen rekordot állított fel, amelynél 118.1 decibelt regisztráltak? ",
+        "valasz": "A leghangosabb böfögés",
+        "regex": "^[Aa] leghangosabb (b[oö]f[oö]g[eé]s|b[uü]fiz[eé]s|b[oö]ffent[eé]s){1}$"
+    },
+    {
+        "KerdesTipus": "EGESZ_SZAM",
+        "kerdes": "Mennyi a Föld-Hold távolsága kilóméterben? :",
+        "valasz": 384400,
+        "regex": ""
+    },
+    {
+        "KerdesTipus": "EGESZ_SZAM",
+        "kerdes": "Mekkora a Föld átmérője kilóméterben? :",
+        "valasz": 12742,
+        "regex": ""
+    },
+    {
+        "KerdesTipus": "EGESZ_SZAM",
+        "kerdes": "Az Aranybulla kiadásának éve :",
+        "valasz": 1222,
+        "regex": ""
+    },
+    {
+        "KerdesTipus": "EGESZ_SZAM",
+        "kerdes": "A HTTP protokol alapértelmezés szerint ezen a porton kommunikál :",
+        "valasz": 80,
+        "regex": ""
+    },
+    {
+        "KerdesTipus": "TIZEDES_SZAM",
+        "kerdes": "Mekkora a nehézségi gyorsulás értéke a Földön? :",
+        "valasz": 9.81,
+        "regex": ""
+    },
+    {
+        "KerdesTipus": "TIZEDES_SZAM",
+        "kerdes": "Mennyi a PI értéke? :",
+        "valasz": 3.1415927,
+        "regex": ""
+    },
+    {
+        "KerdesTipus": "TIZEDES_SZAM",
+        "kerdes": "Mekkora a nehézségi gyorsulás értéke a Holdon? :",
+        "valasz": 1.6,
+        "regex": ""
+    },
+    {
+        "KerdesTipus": "TIZEDES_SZAM",
+        "kerdes": "Mekkora a nehézségi gyorsulás értéke a Marson? :",
+        "valasz": 3.69,
+        "regex": ""
+    }
+]
