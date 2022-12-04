@@ -7,30 +7,7 @@ from rich import print as rprint
 
 
 def checkUserInput(string: str):
-    isClear = False
     encodedStringList = []
-    SqlStatements = [
-        'and',
-        '\'and'
-        'or',
-        '\'or',
-        'sleep',
-        'from',
-        'select',
-        'where',
-        'order',
-        'like',
-        'union',
-        'database',
-        'version',
-        'information_schema',
-        'table_name',
-        'concat',
-        'null',
-        'having',
-        'substring',
-        
-    ]
     print('')
     rprint(f'[bold][yellow]Start investigation of "{string}"[/bold][/yellow]')
     if isUrldecode(string):
@@ -55,22 +32,13 @@ def checkUserInput(string: str):
             #print(f'No Base64 data found in {item}')
             encodedStringList.append(item)
     
-    stringToCheck = ' '.join([item for item in encodedStringList]).lower()
-    stringListToCheck = stringToCheck.split()
-    #bool(re.search(r"(\s*([\0\b\'\"\n\r\t\%\_\\]*\s*(((select\s*.+\s*from\s*.+)|(insert\s*.+\s*into\s*.+)|(update\s*.+\s*set\s*.+)|(delete\s*.+\s*from\s*.+)|(drop\s*.+)|(truncate\s*.+)|(alter\s*.+)|(exec\s*.+)|(\s*(all|any|not|and|between|in|like|or|some|contains|containsall|containskey)\s*.+[\=\>\<=\!\~]+.+)|(let\s+.+[\=]\s*.*)|(begin\s*.*\s*end)|(\s*[\*]+\s*.*\s*[\*]+)|(\s*(\-\-)\s*.*\s+)|(\s*(contains|containsall|containskey)\s+.*)))(\s*[\;]\s*)*)+)", stringToCheck)):
-        
-    for listItem in stringListToCheck:
-        if listItem in SqlStatements:
-            isClear = False
-            break
-        else:
-            isClear = True
-            
-    if isClear:
-        rprint('[bold][green]User Input OK[/bold][/green]')
-    else:
+    stringToCheck = ' '.join([item for item in encodedStringList])
+    
+    if bool(re.search(r"(\s*([\0\b\'\"\n\r\t\%\_\\]*\s*(((select\s*.+\s*from\s*.+)|(insert\s*.+\s*into\s*.+)|(update\s*.+\s*set\s*.+)|(delete\s*.+\s*from\s*.+)|(drop\s*.+)|(truncate\s*.+)|(alter\s*.+)|(exec\s*.+)|(\s*(all|any|not|and|between|in|like|or|some|contains|containsall|containskey)\s*.+[\=\>\<=\!\~]+.+)|(let\s+.+[\=]\s*.*)|(begin\s*.*\s*end)|(\s*[\*]+\s*.*\s*[\*]+)|(\s*(\-\-)\s*.*\s+)|(\s*(contains|containsall|containskey)\s+.*)))(\s*[\;]\s*)*)+)", stringToCheck)):
         rprint(f'[bold]SQLi injection command found in :[/bold] [red]{string}[/red]')
-   
+        
+    else:
+        rprint('[bold][green]User Input OK[/bold][/green]')
         
             
 def shannon(string):
